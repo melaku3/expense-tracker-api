@@ -4,6 +4,9 @@ import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import errorHandler from './middlewares/errorHandler';
 
+// Routes
+import authRoute from './routes/authRoute';
+
 // Create Express server
 const app = express();
 
@@ -19,6 +22,9 @@ app.use(express.urlencoded({extended: true}));
 app.get('/', (_req, res) => {
     res.json({message: 'Welcome to the Expense Tracker API! This project is designed to help you manage and track your expenses efficiently. Feel free to explore and contribute to this brainstorming project.'});
 });
+
+app.use('/api/auth', authRoute);
+
 
 // Error handler
 app.use(errorHandler);
