@@ -6,6 +6,8 @@ import errorHandler from './middlewares/errorHandler';
 
 // Routes
 import authRoute from './routes/authRoute';
+import categoryRoute from './routes/categoryRoute';
+import expenseRoute from './routes/expenseRoute';
 
 // Create Express server
 const app = express();
@@ -16,14 +18,16 @@ app.use(cors());
 app.use(cookieParser());
 app.use(morgan('dev'));
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
 // Welcome message
 app.get('/', (_req, res) => {
-    res.json({message: 'Welcome to the Expense Tracker API! This project is designed to help you manage and track your expenses efficiently. Feel free to explore and contribute to this brainstorming project.'});
+    res.json({ message: 'Welcome to the Expense Tracker API! This project is designed to help you manage and track your expenses efficiently. Feel free to explore and contribute to this brainstorming project.' });
 });
 
 app.use('/api/auth', authRoute);
+app.use('/api/categories', categoryRoute);
+app.use('/api/expenses', expenseRoute);
 
 
 // Error handler
